@@ -519,22 +519,3 @@ You can run the test suite with `npm` or `yarn`.
 npm run test
 yarn test
 ```
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/lctech-andychuang/git-auto-commit-action/tags).
-
-We also provide major version tags to make it easier to always use the latest release of a major version. For example, you can use `lctech-andychuang/git-auto-commit-action@v5` to always use the latest release of the current major version.
-(More information about this [here](https://help.github.com/en/actions/building-actions/about-actions#versioning-your-action).)
-
-## Credits
-
-* [Stefan Zweifel](https://github.com/stefanzweifel)
-* [All Contributors](https://github.com/stefanzweifel/git-auto-commit-action/graphs/contributors)
-
-This Action has been inspired and adapted from the [auto-commit](https://github.com/cds-snc/github-actions/tree/master/auto-commit
-)-Action of the Canadian Digital Service and this [commit](https://github.com/elstudio/actions-js-build/blob/41d604d6e73d632e22eac40df8cc69b5added04b/commit/entrypoint.sh)-Action by Eric Johnson.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/stefanzweifel/git-auto-commit-action/blob/master/LICENSE) file for details.
