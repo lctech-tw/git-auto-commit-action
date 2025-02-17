@@ -2,8 +2,8 @@
 
 > The GitHub Action for committing files for the 80% use case.
 
-<a href="https://github.com/lctech-andychuang/git-auto-commit-action/actions?query=workflow%3Atests">
-    <img src="https://github.com/lctech-andychuang/git-auto-commit-action/workflows/tests/badge.svg" alt="">
+<a href="https://github.com/lctech-tw/git-auto-commit-action/actions?query=workflow%3Atests">
+    <img src="https://github.com/lctech-tw/git-auto-commit-action/workflows/tests/badge.svg" alt="">
 </a>
 
 A GitHub Action to detect changed files during a Workflow run and to commit and push them back to the GitHub repository.
@@ -19,7 +19,7 @@ Adding git-auto-commit to your Workflow only takes a couple lines of code.
 2. Add the following step at the end of your job, after other steps that might add or change files.
 
 ```yaml
-- uses: lctech-andychuang/git-auto-commit-action@v5
+- uses: lctech-tw/git-auto-commit-action@v5
 ```
 
 Your Workflow should look similar to this example.
@@ -47,7 +47,7 @@ jobs:
       # …
 
       # Commit all changed files back to the repository
-      - uses: lctech-andychuang/git-auto-commit-action@v5
+      - uses: lctech-tw/git-auto-commit-action@v5
 ```
 
 > [!NOTE]
@@ -56,7 +56,7 @@ jobs:
 The following is an extended example with all available options.
 
 ```yaml
-- uses: lctech-andychuang/git-auto-commit-action@v5
+- uses: lctech-tw/git-auto-commit-action@v5
   with:
     # Optional. Commit message for the created commit.
     # Defaults to "Apply automatic changes"
@@ -154,14 +154,14 @@ jobs:
     - name: Run php-cs-fixer
       uses: docker://oskarstark/php-cs-fixer-ga
 
-    - uses: lctech-andychuang/git-auto-commit-action@v5
+    - uses: lctech-tw/git-auto-commit-action@v5
       with:
         commit_message: Apply php-cs-fixer changes
 ```
 
 ## Inputs
 
-Checkout [`action.yml`](https://github.com/lctech-andychuang/git-auto-commit-action/blob/master/action.yml) for a full list of supported inputs.
+Checkout [`action.yml`](https://github.com/lctech-tw/git-auto-commit-action/blob/master/action.yml) for a full list of supported inputs.
 
 ## Outputs
 
@@ -175,7 +175,7 @@ You can use these outputs to trigger other Actions in your Workflow run based on
 ### Example
 
 ```yaml
-  - uses: lctech-andychuang/git-auto-commit-action@v5
+  - uses: lctech-tw/git-auto-commit-action@v5
     id: auto-commit-action #mandatory for the output to show up in ${{ steps }}
     with:
       commit_message: Apply php-cs-fixer changes
@@ -275,7 +275,7 @@ The example below can be used as a starting point to generate a multiline commit
     # Quick and dirty step to get rid of the temporary file holding the commit message
     - run: rm -rf commitmessage.txt
 
-    - uses: lctech-andychuang/git-auto-commit-action@v5
+    - uses: lctech-tw/git-auto-commit-action@v5
       id: commit
       with:
         commit_message: ${{ steps.commit_message_step.outputs.commit_message }}
@@ -299,14 +299,14 @@ As git-auto-commit by default does not use **your** username and email when crea
     git_commit_gpgsign: true
 
 - name: "Commit and push changes"
-  uses: lctech-andychuang/git-auto-commit-action@v5
+  uses: lctech-tw/git-auto-commit-action@v5
   with:
      commit_author: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
      commit_user_name: ${{ steps.import-gpg.outputs.name }}
      commit_user_email: ${{ steps.import-gpg.outputs.email }}
 ```
 
-See discussion [#334](https://github.com/lctech-andychuang/git-auto-commit-action/discussions/334) for details.
+See discussion [#334](https://github.com/lctech-tw/git-auto-commit-action/discussions/334) for details.
 
 ### Use in forks from private repositories
 
@@ -324,7 +324,7 @@ See [this announcement from GitHub](https://github.blog/2020-08-03-github-action
 > **If you use this Action in combination with a linter/fixer, it's easier if you run the Action on `push` on your `main`-branch.**
 
 > [!WARNING] 
-> Due to limitations of GitHub, this Action currently can't push commits to a base repository, if the fork _lives_ under an organisation. See [github/community#6634](https://github.com/orgs/community/discussions/5634) and [this comment](https://github.com/lctech-andychuang/git-auto-commit-action/issues/211#issuecomment-1428849944) for details.
+> Due to limitations of GitHub, this Action currently can't push commits to a base repository, if the fork _lives_ under an organisation. See [github/community#6634](https://github.com/orgs/community/discussions/5634) and [this comment](https://github.com/lctech-tw/git-auto-commit-action/issues/211#issuecomment-1428849944) for details.
 
 By default, this Action will not run on Pull Requests which have been opened by forks. (This is a limitation by GitHub, not by us.)   
 However, there are a couple of ways to use this Actions in Workflows that should be triggered by forked repositories.
@@ -344,7 +344,7 @@ The workflow below runs whenever a commit is pushed to the `main`-branch or when
 If the workflow is triggered by the `pull_request_target`-event, the workflow will run in the context of the base of the pull request, rather than in the context of the merge commit, as the `pull_request` event does.
 In other words, this will allow your workflow to be run in the repository where the pull request is opened to and will push changes back to the fork.
 
-Check out the discussion in [#211](https://github.com/lctech-andychuang/git-auto-commit-action/issues/211) for more information on this.
+Check out the discussion in [#211](https://github.com/lctech-tw/git-auto-commit-action/issues/211) for more information on this.
 
 ```yaml
 name: Format PHP
@@ -376,7 +376,7 @@ jobs:
     - name: Run php-cs-fixer
       uses: docker://oskarstark/php-cs-fixer-ga
 
-    - uses: lctech-andychuang/git-auto-commit-action@v5
+    - uses: lctech-tw/git-auto-commit-action@v5
 ```
 
 For more information about running Actions on forks, see [this announcement from GitHub](https://github.blog/2020-08-03-github-actions-improvements-for-fork-and-pull-request-workflows/).
@@ -411,7 +411,7 @@ The steps in your workflow might look like this:
     echo "message=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
     echo "author=$(git log -1 --pretty=\"%an <%ae>\")" >> $GITHUB_OUTPUT
 
-- uses: lctech-andychuang/git-auto-commit-action@v5
+- uses: lctech-tw/git-auto-commit-action@v5
   with:
     commit_author: ${{ steps.last-commit.outputs.author }}
     commit_message: ${{ steps.last-commit.outputs.message }}
@@ -420,7 +420,7 @@ The steps in your workflow might look like this:
     skip_fetch: true
 ```
 
-See discussion in [#159](https://github.com/lctech-andychuang/git-auto-commit-action/issues/159#issuecomment-845347950) for details.
+See discussion in [#159](https://github.com/lctech-tw/git-auto-commit-action/issues/159#issuecomment-845347950) for details.
 
 ## Troubleshooting
 ### Action does not push commit to repository
@@ -437,11 +437,11 @@ Updating the `token` value with a Personal Access Token should fix your issues.
 ### git-auto-commit fails to push commit that creates or updates files in `.github/workflows/`
 
 The default `GITHUB_TOKEN` issued by GitHub Action does not have permission to make changes to workflow files located in `.github/workflows/`.
-To fix this, please create a personal access token (PAT) and pass the token to the `actions/checkout`-step in your workflow. (Similar to [how to push to protected branches](https://github.com/lctech-andychuang/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches)).
+To fix this, please create a personal access token (PAT) and pass the token to the `actions/checkout`-step in your workflow. (Similar to [how to push to protected branches](https://github.com/lctech-tw/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches)).
 
-If a PAT does not work for you, you could also create a new GitHub app and use it's token in your workflows. See [this comment in #87](https://github.com/lctech-andychuang/git-auto-commit-action/issues/87#issuecomment-1939138661) for details.
+If a PAT does not work for you, you could also create a new GitHub app and use it's token in your workflows. See [this comment in #87](https://github.com/lctech-tw/git-auto-commit-action/issues/87#issuecomment-1939138661) for details.
 
-See [#322](https://github.com/lctech-andychuang/git-auto-commit-action/issues/322) for details and discussions around this topic.
+See [#322](https://github.com/lctech-tw/git-auto-commit-action/issues/322) for details and discussions around this topic.
 
 ### Push to protected branches
 
@@ -466,7 +466,7 @@ You can learn more about Personal Access Token in the [GitHub documentation](htt
 If you go the "force pushes" route, you have to enable force pushes to a protected branch (see [documentation](https://help.github.com/en/github/administering-a-repository/enabling-force-pushes-to-a-protected-branch)) and update your Workflow to use force push like this.
 
 ```yaml
-    - uses: lctech-andychuang/git-auto-commit-action@v5
+    - uses: lctech-tw/git-auto-commit-action@v5
       with:
         commit_message: Apply php-cs-fixer changes
         push_options: --force
@@ -482,7 +482,7 @@ If you're using the Action with a custom `file_pattern` and the Action throws a 
 
 `file_pattern` is used both for `git-status` and `git-add` in this Action. `git-add` will throw a fatal error, if for example, you use a file pattern like `*.js *.ts` but no `*.ts` files exist in your projects' repository.
 
-See [Issue #227](https://github.com/lctech-andychuang/git-auto-commit-action/issues/227) for details.
+See [Issue #227](https://github.com/lctech-tw/git-auto-commit-action/issues/227) for details.
 
 ### Custom `file_pattern`, changed files but seeing "Working tree clean. Nothing to commit." in the logs
 
@@ -496,13 +496,13 @@ This is due to the fact, that the `*.md`-glob is expanded before sending it to `
 To fix this add `disable_globbing: true` to your Workflow.
 
 ```yaml
-- uses: lctech-andychuang/git-auto-commit-action@v5
+- uses: lctech-tw/git-auto-commit-action@v5
   with:
     file_pattern: '*.md'
     disable_globbing: true
 ```
 
-See [Issue #239](https://github.com/lctech-andychuang/git-auto-commit-action/issues/239) for details.
+See [Issue #239](https://github.com/lctech-tw/git-auto-commit-action/issues/239) for details.
 
 ## Running the tests
 
